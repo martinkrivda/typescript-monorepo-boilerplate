@@ -1,0 +1,16 @@
+{
+  "Common": {
+    "AppName": "Aplicación cliente",
+    "Language": "Idioma",
+    "English": "Inglés",
+    "Czech": "Checo",
+    "Spanish": "Español",
+    "NavHome": "Inicio",
+    "NavComponents": "Componentes",
+    "NavDocs": "Docs",
+    "Back": "Volver"
+  },
+  "Theme": {
+    "Toggle": "Cambiar tema"
+  }
+}

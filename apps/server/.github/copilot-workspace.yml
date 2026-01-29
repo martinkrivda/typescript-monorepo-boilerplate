@@ -1,0 +1,48 @@
+# GitHub Copilot Workspace Configuration
+
+# Project context
+project_type: microservice
+primary_language: typescript
+framework: hono
+database: sqlserver
+orm: prisma
+
+# File patterns to prioritize for context
+important_files:
+  - src/**/*.ts
+  - prisma/schema.prisma
+  - src/db/schema/*.ts
+  - src/routes/**/*.ts
+  - package.json
+  - tsconfig.json
+
+# Code style preferences
+code_style:
+  - Use TypeScript strict mode
+  - Follow ESLint @antfu/eslint-config rules
+  - Use kebab-case for file names
+  - Use Zod for validation
+  - Use Prisma for database operations
+  - Follow OpenAPI documentation standards
+
+# Architecture patterns
+patterns:
+  - Handler-Route-Schema pattern for API endpoints
+  - Dependency injection through Hono context
+  - Centralized error handling
+  - Structured logging with Pino
+  - Rate limiting for public endpoints
+
+# Testing preferences
+testing:
+  - Unit tests for handlers
+  - Integration tests for API endpoints
+  - Mock database operations in tests
+  - Test both success and error scenarios
+
+# Documentation standards
+documentation:
+  - OpenAPI specs for all endpoints
+  - JSDoc comments for complex functions
+  - README updates for setup changes
+  - Schema documentation in code

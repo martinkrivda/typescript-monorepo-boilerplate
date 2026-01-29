@@ -1,0 +1,64 @@
+name: Validate Copilot Instructions
+
+on:
+  push:
+    paths:
+      - .github/copilot-instructions.md
+      - .github/copilot-workspace.yml
+  pull_request:
+    paths:
+      - .github/copilot-instructions.md
+      - .github/copilot-workspace.yml
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Copilot Instructions
+        run: |
+          # Check if copilot instructions file exists and is not empty
+          if [ ! -f ".github/copilot-instructions.md" ]; then
+            echo "❌ Copilot instructions file not found"
+            exit 1
+          fi
+
+          if [ ! -s ".github/copilot-instructions.md" ]; then
+            echo "❌ Copilot instructions file is empty"
+            exit 1
+          fi
+
+          echo "✅ Copilot instructions file is valid"
+
+      - name: Validate Workspace Configuration
+        run: |
+          # Check if workspace config exists
+          if [ ! -f ".github/copilot-workspace.yml" ]; then
+            echo "❌ Copilot workspace configuration not found"
+            exit 1
+          fi
+
+          echo "✅ Copilot workspace configuration is valid"
+
+      - name: Check for required sections
+        run: |
+          # Check if required sections exist in the instructions
+          required_sections=(
+            "Project Overview"
+            "Tech Stack"
+            "Code Style"
+            "Database Guidelines"
+            "API Development"
+          )
+
+          for section in "${required_sections[@]}"; do
+            if ! grep -q "## $section" .github/copilot-instructions.md; then
+              echo "❌ Missing required section: $section"
+              exit 1
+            fi
+          done
+
+          echo "✅ All required sections are present"

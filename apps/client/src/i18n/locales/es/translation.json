@@ -1,0 +1,255 @@
+{
+  "Pages": {
+    "Home": {
+      "Title": "Bienvenido a TanStack + Vite + TypeScript",
+      "Ready": "¡Tu aplicación TanStack está lista!",
+      "CardTitle": "UI inicial",
+      "CardBody": "Edita las traducciones para personalizar esta página.",
+      "CardHint": "La UI de abajo está construida con atoms, molecules y organisms.",
+      "ComponentsLink": "Muestra de componentes"
+    },
+    "Components": {
+      "Title": "Muestra de componentes",
+      "Subtitle": "Bloques reutilizables sin lógica de negocio."
+    },
+    "Auth": {
+      "SignIn": {
+        "Title": "Bienvenido de nuevo",
+        "Description": "Inicia sesión para continuar",
+        "EmailLabel": "Correo",
+        "EmailPlaceholder": "nombre@dominio.com",
+        "PasswordLabel": "Contraseña",
+        "PasswordPlaceholder": "Tu contraseña",
+        "Submit": "Iniciar sesión",
+        "ForgotLink": "¿Olvidaste la contraseña?",
+        "NoAccount": "¿No tienes cuenta?",
+        "SignUpLink": "Regístrate"
+      },
+      "SignUp": {
+        "Title": "Crear una cuenta",
+        "Description": "Únete en segundos",
+        "FirstNameLabel": "Nombre",
+        "FirstNamePlaceholder": "Ana",
+        "LastNameLabel": "Apellido",
+        "LastNamePlaceholder": "Pérez",
+        "EmailLabel": "Correo",
+        "EmailPlaceholder": "nombre@dominio.com",
+        "PasswordLabel": "Contraseña",
+        "PasswordPlaceholder": "Crea una contraseña",
+        "ConfirmPasswordLabel": "Confirmar contraseña",
+        "ConfirmPasswordPlaceholder": "Repite la contraseña",
+        "Submit": "Crear cuenta",
+        "HaveAccount": "¿Ya tienes cuenta?",
+        "SignInLink": "Inicia sesión"
+      },
+      "ForgotPassword": {
+        "Title": "Restablecer contraseña",
+        "Description": "Te enviaremos un enlace de recuperación",
+        "EmailLabel": "Correo",
+        "EmailPlaceholder": "nombre@dominio.com",
+        "Submit": "Enviar enlace",
+        "BackToSignIn": "Volver a iniciar sesión"
+      },
+      "ResetPassword": {
+        "Title": "Establecer nueva contraseña",
+        "Description": "Elige una contraseña segura para tu cuenta",
+        "PasswordLabel": "Nueva contraseña",
+        "PasswordPlaceholder": "Crea una contraseña",
+        "ConfirmPasswordLabel": "Confirmar contraseña",
+        "ConfirmPasswordPlaceholder": "Repite la contraseña",
+        "Submit": "Actualizar contraseña",
+        "BackToSignIn": "Volver a iniciar sesión",
+        "TokenHint": "Token de reinicio: {{token}}"
+      }
+    },
+    "NotFound": {
+      "Title": "Página no encontrada",
+      "Description": "La página que buscas no existe o fue movida.",
+      "GoBack": "Volver",
+      "BackHome": "Volver al inicio"
+    },
+    "NotAuthorized": {
+      "Title": "Acceso denegado",
+      "Description": "No tienes permiso para acceder a esta página.",
+      "GoBack": "Volver",
+      "BackHome": "Volver al inicio"
+    }
+  },
+  "Components": {
+    "Atoms": {
+      "Title": "Atoms",
+      "Primary": "Botón primario",
+      "Secondary": "Botón secundario",
+      "Outline": "Botón outline",
+      "OutlineSmall": "Outline pequeño",
+      "OutlineLarge": "Outline grande",
+      "Badge": "Nuevo",
+      "BadgeAlt": "Predeterminado",
+      "ExternalLink": "Documentación TanStack Router",
+      "InputPlaceholder": "Escribe algo...",
+      "CheckboxLabel": "Acepto los términos",
+      "SelectPlaceholder": "Elige un framework",
+      "TooltipTrigger": "Pasa el cursor",
+      "TooltipContent": "Este es un tooltip útil."
+    },
+    "Molecules": {
+      "Title": "Molecules",
+      "Description": "Composición de atoms con helper UI.",
+      "InputLabel": "Correo",
+      "InputHelper": "Nunca compartiremos tu correo.",
+      "PasswordLabel": "Contraseña",
+      "PasswordError": "La contraseña es demasiado corta.",
+      "Submitting": "Enviando",
+      "Save": "Guardar",
+      "Confirm": {
+        "Title": "Eliminar elemento",
+        "Description": "¿Seguro que quieres eliminar este elemento?",
+        "Action": "Abrir confirmación",
+        "Confirm": "Eliminar",
+        "Cancel": "Cancelar",
+        "Success": "Elemento eliminado"
+      },
+      "Tabs": {
+        "First": "Resumen",
+        "Second": "Detalles",
+        "FirstContent": "Esta pestaña muestra un resumen rápido.",
+        "SecondContent": "Esta pestaña contiene más detalles."
+      },
+      "UserAvatar": {
+        "Title": "Jamie Rivera",
+        "Description": "Líder de diseño"
+      },
+      "Dropdown": {
+        "Label": "Dropdown",
+        "Title": "Acciones",
+        "Trigger": "Abrir menú",
+        "ItemProfile": "Perfil",
+        "ItemSettings": "Configuración",
+        "ItemLogout": "Cerrar sesión"
+      },
+      "Sheet": {
+        "Title": "Panel rápido",
+        "Description": "Panel con información contextual.",
+        "Trigger": "Abrir sheet",
+        "Body": "Este es un ejemplo simple de sheet.",
+        "BodySecondary": "Puedes colocar cualquier contenido aquí."
+      },
+      "PasswordStrength": {
+        "Label": "Fortaleza de la contraseña:",
+        "VeryWeak": "Muy débil",
+        "Weak": "Débil",
+        "Fair": "Aceptable",
+        "Good": "Buena",
+        "Strong": "Fuerte",
+        "VeryStrong": "Muy fuerte"
+      },
+      "Controls": {
+        "Title": "Controles shadcn",
+        "Description": "Primitivos adicionales para entradas e interacciones.",
+        "ToggleLabel": "Botones toggle",
+        "ToggleBold": "Negrita",
+        "ToggleItalic": "Cursiva",
+        "ToggleUnderline": "Subrayado",
+        "ToggleGroupLabel": "Grupo toggle",
+        "ToggleGroupLeft": "Izquierda",
+        "ToggleGroupCenter": "Centro",
+        "ToggleGroupRight": "Derecha",
+        "TextareaLabel": "Mensaje",
+        "TextareaPlaceholder": "Escribe tu mensaje...",
+        "SwitchLabel": "Notificaciones",
+        "SwitchOn": "Activado",
+        "SwitchOff": "Desactivado",
+        "RadioLabel": "Método de entrega",
+        "RadioEmail": "Correo",
+        "RadioSms": "SMS",
+        "OtpLabel": "Código de verificación",
+        "BreadcrumbLabel": "Breadcrumb",
+        "BreadcrumbHome": "Inicio",
+        "BreadcrumbComponents": "Componentes",
+        "BreadcrumbCurrent": "Controles",
+        "HoverCardLabel": "Hover card",
+        "HoverCardTrigger": "Vista previa",
+        "HoverCardTitle": "Vista rápida",
+        "HoverCardContent": "Las hover cards son útiles para información contextual."
+      }
+    },
+    "Toast": {
+      "Title": "Guardado",
+      "Description": "Esta es una notificación de ejemplo.",
+      "Action": "Mostrar toast",
+      "ErrorTitle": "Algo salió mal",
+      "ErrorDescription": "Vuelve a intentarlo en un momento.",
+      "ErrorAction": "Mostrar toast de error"
+    },
+    "Organisms": {
+      "Title": "Organisms",
+      "Description": "Patrones UI más grandes compuestos de molecules.",
+      "EmptyTitle": "Aún no hay nada",
+      "EmptyDescription": "Agrega tu primer registro para comenzar.",
+      "EmptyAction": "Agregar elemento",
+      "CardTitle": "Tarjeta",
+      "CardDescription": "Ejemplo de layout de tarjeta con primitivas shadcn.",
+      "CardSampleTitle": "Estado del proyecto",
+      "CardSampleDescription": "Resumen semanal",
+      "CardSampleBody": "Última actualización hace 2 horas. Todo funciona bien.",
+      "CardSampleAction": "Ver reporte",
+      "TableTitle": "Tabla",
+      "TableDescription": "Ejemplo simple de tabla con estados.",
+      "TableHeaderName": "Nombre",
+      "TableHeaderStatus": "Estado",
+      "TableHeaderRole": "Rol",
+      "TableStatusActive": "Activo",
+      "TableStatusPending": "Pendiente",
+      "TableStatusInactive": "Inactivo",
+      "SidebarDemo": {
+        "Title": "Layout con sidebar",
+        "Description": "Navbar con navegación lateral plegable.",
+        "NavbarTitle": "Workspace",
+        "NavLabel": "Navegación",
+        "Collapse": "Ocultar sidebar",
+        "Expand": "Mostrar sidebar",
+        "PrimaryAction": "Nuevo elemento",
+        "ItemDashboard": "Panel",
+        "ItemProjects": "Proyectos",
+        "ItemReports": "Reportes",
+        "ItemSettings": "Configuración",
+        "RailDashboard": "Panel",
+        "RailIncomingInvoices": "Facturas recibidas",
+        "RailContracts": "Contratos",
+        "RailRequests": "Solicitudes",
+        "RailOutgoingInvoices": "Facturas emitidas",
+        "RailUsers": "Gestión de usuarios",
+        "ContentTitle": "Panel",
+        "ContentDescription": "Esta área representa el contenido principal."
+      },
+      "ResizableTitle": "Paneles redimensionables",
+      "ResizableDescription": "Arrastra el manejador para cambiar el tamaño.",
+      "ResizableLeft": "Panel principal",
+      "ResizableRight": "Panel secundario",
+      "DataTable": {
+        "Title": "Tabla de datos (TanStack)",
+        "Description": "Tabla ordenable basada en @tanstack/react-table.",
+        "Empty": "No hay filas para mostrar.",
+        "SearchPlaceholder": "Buscar...",
+        "StatusFilterLabel": "Estado",
+        "StatusAll": "Todos",
+        "ExportCsv": "Exportar CSV",
+        "Print": "Imprimir",
+        "RowsPerPage": "Filas por página",
+        "Page": "Página",
+        "Of": "de",
+        "Prev": "Anterior",
+        "Next": "Siguiente",
+        "Headers": {
+          "Name": "Nombre",
+          "Email": "Correo",
+          "Role": "Rol",
+          "Status": "Estado"
+        },
+        "StatusActive": "Activo",
+        "StatusPending": "Pendiente",
+        "StatusInactive": "Inactivo"
+      }
+    }
+  }
+}

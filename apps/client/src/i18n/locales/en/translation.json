@@ -1,0 +1,273 @@
+{
+  "Pages": {
+    "Home": {
+      "Title": "Welcome to TanStack + Vite + TypeScript",
+      "Ready": "Your TanStack application is ready!",
+      "CardTitle": "Starter UI",
+      "CardBody": "Edit the translations to customize this page.",
+      "CardHint": "The UI below is built from atoms, molecules, and organisms.",
+      "ComponentsLink": "Components showcase"
+    },
+    "Components": {
+      "Title": "Components showcase",
+      "Subtitle": "Reusable building blocks without business logic.",
+      "TanStackForm": {
+        "Title": "TanStack Form",
+        "Description": "Sample form with validation and submit handling.",
+        "NameLabel": "Full name",
+        "NamePlaceholder": "e.g. Jane Doe",
+        "NameRequired": "Name is required.",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "name@example.com",
+        "EmailRequired": "Email is required.",
+        "EmailInvalid": "Enter a valid email address.",
+        "MessageLabel": "Message",
+        "MessagePlaceholder": "Short message...",
+        "MessageHelper": "Write at least 10 characters.",
+        "MessageMin": "Message must be at least 10 characters.",
+        "Submit": "Submit",
+        "SuccessTitle": "Form submitted",
+        "SuccessDescription": "Thanks, {{name}}."
+      }
+    },
+    "Auth": {
+      "SignIn": {
+        "Title": "Welcome back",
+        "Description": "Sign in to continue",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "name@example.com",
+        "PasswordLabel": "Password",
+        "PasswordPlaceholder": "Your password",
+        "Submit": "Sign in",
+        "ForgotLink": "Forgot password?",
+        "NoAccount": "Don't have an account?",
+        "SignUpLink": "Sign up"
+      },
+      "SignUp": {
+        "Title": "Create an account",
+        "Description": "Join the platform in seconds",
+        "FirstNameLabel": "First name",
+        "FirstNamePlaceholder": "Jane",
+        "LastNameLabel": "Last name",
+        "LastNamePlaceholder": "Doe",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "name@example.com",
+        "PasswordLabel": "Password",
+        "PasswordPlaceholder": "Create a password",
+        "ConfirmPasswordLabel": "Confirm password",
+        "ConfirmPasswordPlaceholder": "Repeat password",
+        "Submit": "Create account",
+        "HaveAccount": "Already have an account?",
+        "SignInLink": "Sign in"
+      },
+      "ForgotPassword": {
+        "Title": "Reset your password",
+        "Description": "We will send you a reset link",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "name@example.com",
+        "Submit": "Send reset link",
+        "BackToSignIn": "Back to sign in"
+      },
+      "ResetPassword": {
+        "Title": "Set a new password",
+        "Description": "Choose a strong password to secure your account",
+        "PasswordLabel": "New password",
+        "PasswordPlaceholder": "Create a password",
+        "ConfirmPasswordLabel": "Confirm password",
+        "ConfirmPasswordPlaceholder": "Repeat password",
+        "Submit": "Update password",
+        "BackToSignIn": "Back to sign in",
+        "TokenHint": "Reset token: {{token}}"
+      }
+    },
+    "NotFound": {
+      "Title": "Page not found",
+      "Description": "The page you're looking for doesn't exist or has been moved.",
+      "GoBack": "Go back",
+      "BackHome": "Back to home"
+    },
+    "NotAuthorized": {
+      "Title": "Access denied",
+      "Description": "You don't have permission to access this page.",
+      "GoBack": "Go back",
+      "BackHome": "Back to home"
+    }
+  },
+  "Components": {
+    "Atoms": {
+      "Title": "Atoms",
+      "Primary": "Primary button",
+      "Secondary": "Secondary button",
+      "Outline": "Outline button",
+      "OutlineSmall": "Outline small",
+      "OutlineLarge": "Outline large",
+      "Badge": "New",
+      "BadgeAlt": "Default",
+      "ExternalLink": "TanStack Router docs",
+      "InputPlaceholder": "Type something...",
+      "CheckboxLabel": "I agree to the terms",
+      "SelectPlaceholder": "Pick a framework",
+      "TooltipTrigger": "Hover for tooltip",
+      "TooltipContent": "This is a helpful tooltip."
+    },
+    "Molecules": {
+      "Title": "Molecules",
+      "Description": "Composition of atoms with helper UI.",
+      "InputLabel": "Email",
+      "InputHelper": "We will never share your email.",
+      "PasswordLabel": "Password",
+      "PasswordError": "Password is too short.",
+      "Submitting": "Submitting",
+      "Save": "Save",
+      "Confirm": {
+        "Title": "Delete item",
+        "Description": "Are you sure you want to delete this item?",
+        "Action": "Open confirm dialog",
+        "Confirm": "Delete",
+        "Cancel": "Cancel",
+        "Success": "Item deleted"
+      },
+      "Tabs": {
+        "First": "Overview",
+        "Second": "Details",
+        "FirstContent": "This tab shows a quick overview.",
+        "SecondContent": "This tab contains more detailed information."
+      },
+      "UserAvatar": {
+        "Title": "Jamie Rivera",
+        "Description": "Design Lead"
+      },
+      "Dropdown": {
+        "Label": "Dropdown",
+        "Title": "Actions",
+        "Trigger": "Open menu",
+        "ItemProfile": "Profile",
+        "ItemSettings": "Settings",
+        "ItemLogout": "Sign out"
+      },
+      "Sheet": {
+        "Title": "Quick panel",
+        "Description": "Panel content with contextual info.",
+        "Trigger": "Open sheet",
+        "Body": "This is a simple sheet panel example.",
+        "BodySecondary": "You can place any content here."
+      },
+      "PasswordStrength": {
+        "Label": "Password strength:",
+        "VeryWeak": "Very Weak",
+        "Weak": "Weak",
+        "Fair": "Fair",
+        "Good": "Good",
+        "Strong": "Strong",
+        "VeryStrong": "Very Strong"
+      },
+      "Controls": {
+        "Title": "Shadcn controls",
+        "Description": "Extra primitives for inputs and interactions.",
+        "ToggleLabel": "Toggle buttons",
+        "ToggleBold": "Bold",
+        "ToggleItalic": "Italic",
+        "ToggleUnderline": "Underline",
+        "ToggleGroupLabel": "Toggle group",
+        "ToggleGroupLeft": "Left",
+        "ToggleGroupCenter": "Center",
+        "ToggleGroupRight": "Right",
+        "TextareaLabel": "Message",
+        "TextareaPlaceholder": "Type your message...",
+        "SwitchLabel": "Notifications",
+        "SwitchOn": "Enabled",
+        "SwitchOff": "Disabled",
+        "RadioLabel": "Delivery method",
+        "RadioEmail": "Email",
+        "RadioSms": "SMS",
+        "OtpLabel": "Verification code",
+        "BreadcrumbLabel": "Breadcrumb",
+        "BreadcrumbHome": "Home",
+        "BreadcrumbComponents": "Components",
+        "BreadcrumbCurrent": "Controls",
+        "HoverCardLabel": "Hover card",
+        "HoverCardTrigger": "Preview",
+        "HoverCardTitle": "Quick preview",
+        "HoverCardContent": "Hover cards are useful for contextual information."
+      }
+    },
+    "Toast": {
+      "Title": "Saved",
+      "Description": "This is a sample toast notification.",
+      "Action": "Show toast",
+      "ErrorTitle": "Something went wrong",
+      "ErrorDescription": "Please try again in a moment.",
+      "ErrorAction": "Show error toast"
+    },
+    "Organisms": {
+      "Title": "Organisms",
+      "Description": "Larger UI patterns composed of molecules.",
+      "EmptyTitle": "Nothing here yet",
+      "EmptyDescription": "Add your first record to get started.",
+      "EmptyAction": "Add item",
+      "CardTitle": "Card",
+      "CardDescription": "Card layout example using shadcn primitives.",
+      "CardSampleTitle": "Project status",
+      "CardSampleDescription": "Weekly summary",
+      "CardSampleBody": "Last updated 2 hours ago. Everything is running smoothly.",
+      "CardSampleAction": "View report",
+      "TableTitle": "Table",
+      "TableDescription": "Simple table example with status labels.",
+      "TableHeaderName": "Name",
+      "TableHeaderStatus": "Status",
+      "TableHeaderRole": "Role",
+      "TableStatusActive": "Active",
+      "TableStatusPending": "Pending",
+      "TableStatusInactive": "Inactive",
+      "SidebarDemo": {
+        "Title": "Sidebar layout",
+        "Description": "Navbar with a collapsible left navigation.",
+        "NavbarTitle": "Workspace",
+        "NavLabel": "Navigation",
+        "Collapse": "Collapse sidebar",
+        "Expand": "Expand sidebar",
+        "PrimaryAction": "New item",
+        "ItemDashboard": "Dashboard",
+        "ItemProjects": "Projects",
+        "ItemReports": "Reports",
+        "ItemSettings": "Settings",
+        "RailDashboard": "Dashboard",
+        "RailIncomingInvoices": "Incoming invoices",
+        "RailContracts": "Contracts",
+        "RailRequests": "Requests",
+        "RailOutgoingInvoices": "Outgoing invoices",
+        "RailUsers": "User management",
+        "ContentTitle": "Dashboard",
+        "ContentDescription": "This area represents the main page content."
+      },
+      "ResizableTitle": "Resizable panels",
+      "ResizableDescription": "Drag the handle to resize panels.",
+      "ResizableLeft": "Primary panel",
+      "ResizableRight": "Secondary panel",
+      "DataTable": {
+        "Title": "Data table (TanStack)",
+        "Description": "Sortable data table powered by @tanstack/react-table.",
+        "Empty": "No rows to display.",
+        "SearchPlaceholder": "Search...",
+        "StatusFilterLabel": "Status",
+        "StatusAll": "All",
+        "ExportCsv": "Export CSV",
+        "Print": "Print",
+        "RowsPerPage": "Rows per page",
+        "Page": "Page",
+        "Of": "of",
+        "Prev": "Prev",
+        "Next": "Next",
+        "Headers": {
+          "Name": "Name",
+          "Email": "Email",
+          "Role": "Role",
+          "Status": "Status"
+        },
+        "StatusActive": "Active",
+        "StatusPending": "Pending",
+        "StatusInactive": "Inactive"
+      }
+    }
+  }
+}

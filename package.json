@@ -1,0 +1,42 @@
+{
+  "name": "typescript-monorepo-starter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^9.39.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "turbo": "^2.8.0",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": ">=22.20.0",
+    "pnpm": ">=10.20.0"
+  },
+  "lint-staged": {
+    "apps/client/**/*.{ts,tsx}": [
+      "pnpm --filter client lint"
+    ],
+    "apps/server/**/*.{ts}": [
+      "pnpm --filter server lint"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+# Root Docker Compose for client + server
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+      target: production
+    image: api-template:latest
+    container_name: api-template-server
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - apps/server/.env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+      CORS_METHODS: ${CORS_METHODS:-GET,POST,PUT,DELETE,OPTIONS}
+      CORS_HEADERS: ${CORS_HEADERS:-Content-Type,Authorization}
+      RATE_LIMIT_WINDOW_MS: ${RATE_LIMIT_WINDOW_MS:-900000}
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    healthcheck:
+      test: ["CMD", "sh", "-c", "node -e \"require('http').get('http://localhost:' + (process.env.PORT || 3001) + '/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))\""]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+        reservations:
+          memory: 512M
+          cpus: "0.5"
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=100M,noexec,nosuid,nodev
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        compress: "true"
+
+  client:
+    build:
+      context: .
+      dockerfile: apps/client/Dockerfile
+      target: production
+    image: client-template:latest
+    container_name: client-template
+    ports:
+      - "3000:3000"
+    env_file:
+      - apps/client/.env
+    depends_on:
+      server:
+        condition: service_healthy

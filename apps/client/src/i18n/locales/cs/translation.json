@@ -1,0 +1,273 @@
+{
+  "Pages": {
+    "Home": {
+      "Title": "Vítejte v TanStack + Vite + TypeScript",
+      "Ready": "Vaše TanStack aplikace je připravena!",
+      "CardTitle": "Startovní UI",
+      "CardBody": "Upravte překlady a přizpůsobte si tuto stránku.",
+      "CardHint": "Níže je ukázka UI postaveného z atoms, molecules a organisms.",
+      "ComponentsLink": "Ukázka komponent"
+    },
+    "Components": {
+      "Title": "Ukázka komponent",
+      "Subtitle": "Znovupoužitelné stavební bloky bez business logiky.",
+      "TanStackForm": {
+        "Title": "TanStack Form",
+        "Description": "Ukázka formuláře s validací a submitem.",
+        "NameLabel": "Celé jméno",
+        "NamePlaceholder": "Např. Jana Nováková",
+        "NameRequired": "Jméno je povinné.",
+        "EmailLabel": "E-mail",
+        "EmailPlaceholder": "name@example.com",
+        "EmailRequired": "E-mail je povinný.",
+        "EmailInvalid": "Zadejte platný e-mail.",
+        "MessageLabel": "Zpráva",
+        "MessagePlaceholder": "Krátká zpráva...",
+        "MessageHelper": "Napište alespoň 10 znaků.",
+        "MessageMin": "Zpráva musí mít alespoň 10 znaků.",
+        "Submit": "Odeslat",
+        "SuccessTitle": "Formulář odeslán",
+        "SuccessDescription": "Děkujeme, {{name}}."
+      }
+    },
+    "Auth": {
+      "SignIn": {
+        "Title": "Vítejte zpět",
+        "Description": "Přihlaste se pro pokračování",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "jmeno@domena.cz",
+        "PasswordLabel": "Heslo",
+        "PasswordPlaceholder": "Vaše heslo",
+        "Submit": "Přihlásit se",
+        "ForgotLink": "Zapomenuté heslo?",
+        "NoAccount": "Nemáte účet?",
+        "SignUpLink": "Zaregistrovat se"
+      },
+      "SignUp": {
+        "Title": "Vytvořit účet",
+        "Description": "Registrace zabere jen chvilku",
+        "FirstNameLabel": "Jméno",
+        "FirstNamePlaceholder": "Jan",
+        "LastNameLabel": "Příjmení",
+        "LastNamePlaceholder": "Novák",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "jmeno@domena.cz",
+        "PasswordLabel": "Heslo",
+        "PasswordPlaceholder": "Zvolte heslo",
+        "ConfirmPasswordLabel": "Potvrzení hesla",
+        "ConfirmPasswordPlaceholder": "Zopakujte heslo",
+        "Submit": "Vytvořit účet",
+        "HaveAccount": "Máte účet?",
+        "SignInLink": "Přihlásit se"
+      },
+      "ForgotPassword": {
+        "Title": "Obnovit heslo",
+        "Description": "Zašleme vám odkaz pro reset",
+        "EmailLabel": "Email",
+        "EmailPlaceholder": "jmeno@domena.cz",
+        "Submit": "Odeslat odkaz",
+        "BackToSignIn": "Zpět na přihlášení"
+      },
+      "ResetPassword": {
+        "Title": "Nastavit nové heslo",
+        "Description": "Zvolte silné heslo pro ochranu účtu",
+        "PasswordLabel": "Nové heslo",
+        "PasswordPlaceholder": "Zvolte heslo",
+        "ConfirmPasswordLabel": "Potvrzení hesla",
+        "ConfirmPasswordPlaceholder": "Zopakujte heslo",
+        "Submit": "Uložit heslo",
+        "BackToSignIn": "Zpět na přihlášení",
+        "TokenHint": "Reset token: {{token}}"
+      }
+    },
+    "NotFound": {
+      "Title": "Stránka nenalezena",
+      "Description": "Stránka neexistuje nebo byla přesunuta.",
+      "GoBack": "Zpět",
+      "BackHome": "Zpět na domů"
+    },
+    "NotAuthorized": {
+      "Title": "Přístup odepřen",
+      "Description": "Nemáte oprávnění k přístupu na tuto stránku.",
+      "GoBack": "Zpět",
+      "BackHome": "Zpět na domů"
+    }
+  },
+  "Components": {
+    "Atoms": {
+      "Title": "Atoms",
+      "Primary": "Primární tlačítko",
+      "Secondary": "Sekundární tlačítko",
+      "Outline": "Outline tlačítko",
+      "OutlineSmall": "Outline malé",
+      "OutlineLarge": "Outline velké",
+      "Badge": "Nové",
+      "BadgeAlt": "Výchozí",
+      "ExternalLink": "Dokumentace TanStack Router",
+      "InputPlaceholder": "Napište něco...",
+      "CheckboxLabel": "Souhlasím s podmínkami",
+      "SelectPlaceholder": "Vyberte framework",
+      "TooltipTrigger": "Najeď pro tooltip",
+      "TooltipContent": "Toto je užitečný tooltip."
+    },
+    "Molecules": {
+      "Title": "Molecules",
+      "Description": "Složení atomů s helper UI.",
+      "InputLabel": "E-mail",
+      "InputHelper": "Váš e-mail nikdy nesdílíme.",
+      "PasswordLabel": "Heslo",
+      "PasswordError": "Heslo je příliš krátké.",
+      "Submitting": "Odesílání",
+      "Save": "Uložit",
+      "Confirm": {
+        "Title": "Smazat položku",
+        "Description": "Opravdu chcete tuto položku smazat?",
+        "Action": "Otevřít potvrzení",
+        "Confirm": "Smazat",
+        "Cancel": "Zrušit",
+        "Success": "Položka smazána"
+      },
+      "Tabs": {
+        "First": "Přehled",
+        "Second": "Detaily",
+        "FirstContent": "Tato záložka zobrazuje rychlý přehled.",
+        "SecondContent": "Tato záložka obsahuje více detailů."
+      },
+      "UserAvatar": {
+        "Title": "Jamie Rivera",
+        "Description": "Vedoucí designu"
+      },
+      "Dropdown": {
+        "Label": "Dropdown",
+        "Title": "Akce",
+        "Trigger": "Otevřít menu",
+        "ItemProfile": "Profil",
+        "ItemSettings": "Nastavení",
+        "ItemLogout": "Odhlásit se"
+      },
+      "Sheet": {
+        "Title": "Rychlý panel",
+        "Description": "Panel s kontextovými informacemi.",
+        "Trigger": "Otevřít sheet",
+        "Body": "Toto je jednoduchá ukázka sheet panelu.",
+        "BodySecondary": "Můžeš sem vložit libovolný obsah."
+      },
+      "PasswordStrength": {
+        "Label": "Síla hesla:",
+        "VeryWeak": "Velmi slabé",
+        "Weak": "Slabé",
+        "Fair": "Ucházející",
+        "Good": "Dobré",
+        "Strong": "Silné",
+        "VeryStrong": "Velmi silné"
+      },
+      "Controls": {
+        "Title": "Shadcn ovládací prvky",
+        "Description": "Další primitiva pro vstupy a interakce.",
+        "ToggleLabel": "Toggle tlačítka",
+        "ToggleBold": "Tučné",
+        "ToggleItalic": "Kurzíva",
+        "ToggleUnderline": "Podtržení",
+        "ToggleGroupLabel": "Toggle group",
+        "ToggleGroupLeft": "Vlevo",
+        "ToggleGroupCenter": "Na střed",
+        "ToggleGroupRight": "Vpravo",
+        "TextareaLabel": "Zpráva",
+        "TextareaPlaceholder": "Napište zprávu...",
+        "SwitchLabel": "Notifikace",
+        "SwitchOn": "Zapnuto",
+        "SwitchOff": "Vypnuto",
+        "RadioLabel": "Způsob doručení",
+        "RadioEmail": "Email",
+        "RadioSms": "SMS",
+        "OtpLabel": "Ověřovací kód",
+        "BreadcrumbLabel": "Breadcrumb",
+        "BreadcrumbHome": "Domů",
+        "BreadcrumbComponents": "Komponenty",
+        "BreadcrumbCurrent": "Ovládací prvky",
+        "HoverCardLabel": "Hover card",
+        "HoverCardTrigger": "Náhled",
+        "HoverCardTitle": "Rychlý náhled",
+        "HoverCardContent": "Hover card je užitečný pro kontextové informace."
+      }
+    },
+    "Toast": {
+      "Title": "Uloženo",
+      "Description": "Toto je ukázková toast notifikace.",
+      "Action": "Zobrazit toast",
+      "ErrorTitle": "Něco se pokazilo",
+      "ErrorDescription": "Zkuste to prosím znovu za chvíli.",
+      "ErrorAction": "Zobrazit error toast"
+    },
+    "Organisms": {
+      "Title": "Organisms",
+      "Description": "Větší UI vzory složené z molecules.",
+      "EmptyTitle": "Zatím tu nic není",
+      "EmptyDescription": "Přidejte první záznam a začněte.",
+      "EmptyAction": "Přidat položku",
+      "CardTitle": "Karta",
+      "CardDescription": "Ukázka layoutu karty pomocí shadcn primitiv.",
+      "CardSampleTitle": "Stav projektu",
+      "CardSampleDescription": "Týdenní souhrn",
+      "CardSampleBody": "Naposledy aktualizováno před 2 hodinami. Vše běží hladce.",
+      "CardSampleAction": "Zobrazit report",
+      "TableTitle": "Tabulka",
+      "TableDescription": "Jednoduchá ukázka tabulky se stavy.",
+      "TableHeaderName": "Jméno",
+      "TableHeaderStatus": "Stav",
+      "TableHeaderRole": "Role",
+      "TableStatusActive": "Aktivní",
+      "TableStatusPending": "Čeká",
+      "TableStatusInactive": "Neaktivní",
+      "SidebarDemo": {
+        "Title": "Sidebar layout",
+        "Description": "Navbar s výsuvnou levou navigací.",
+        "NavbarTitle": "Workspace",
+        "NavLabel": "Navigace",
+        "Collapse": "Skrýt sidebar",
+        "Expand": "Zobrazit sidebar",
+        "PrimaryAction": "Nová položka",
+        "ItemDashboard": "Dashboard",
+        "ItemProjects": "Projekty",
+        "ItemReports": "Reporty",
+        "ItemSettings": "Nastavení",
+        "RailDashboard": "Dashboard",
+        "RailIncomingInvoices": "Přijaté faktury",
+        "RailContracts": "Smlouvy",
+        "RailRequests": "Žádanky",
+        "RailOutgoingInvoices": "Vydané faktury",
+        "RailUsers": "Správa uživatelů",
+        "ContentTitle": "Dashboard",
+        "ContentDescription": "Tato oblast reprezentuje hlavní obsah stránky."
+      },
+      "ResizableTitle": "Resizable panely",
+      "ResizableDescription": "Táhněte za úchyt a měňte velikost panelů.",
+      "ResizableLeft": "Primární panel",
+      "ResizableRight": "Sekundární panel",
+      "DataTable": {
+        "Title": "Data table (TanStack)",
+        "Description": "Řaditelná tabulka dat postavená na @tanstack/react-table.",
+        "Empty": "Žádné řádky k zobrazení.",
+        "SearchPlaceholder": "Hledat...",
+        "StatusFilterLabel": "Stav",
+        "StatusAll": "Vše",
+        "ExportCsv": "Export CSV",
+        "Print": "Tisk",
+        "RowsPerPage": "Řádků na stránku",
+        "Page": "Strana",
+        "Of": "z",
+        "Prev": "Předchozí",
+        "Next": "Další",
+        "Headers": {
+          "Name": "Jméno",
+          "Email": "Email",
+          "Role": "Role",
+          "Status": "Stav"
+        },
+        "StatusActive": "Aktivní",
+        "StatusPending": "Čeká",
+        "StatusInactive": "Neaktivní"
+      }
+    }
+  }
+}

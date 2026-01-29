@@ -1,0 +1,37 @@
+{
+  "Common": {
+    "AppName": "Client App",
+    "Language": "Language",
+    "English": "English",
+    "Czech": "Czech",
+    "Spanish": "Spanish",
+    "NavHome": "Home",
+    "NavComponents": "Components",
+    "NavDocs": "Docs",
+    "Back": "Back"
+  },
+  "Theme": {
+    "Toggle": "Toggle theme"
+  },
+  "Validation": {
+    "Required": "This field is required.",
+    "RequiredField": "{{field}} is required.",
+    "String": "Invalid text.",
+    "StringField": "{{field}} is not valid.",
+    "Number": "Invalid number.",
+    "NumberField": "{{field}} must be a number.",
+    "Date": "Invalid date.",
+    "DateField": "{{field}} must be a valid date.",
+    "DateTime": "Invalid date and time.",
+    "DateTimeField": "{{field}} must be a valid date and time.",
+    "Email": "Invalid email address.",
+    "EmailField": "{{field}} must be a valid email.",
+    "Phone": "Invalid phone number.",
+    "PhoneField": "{{field}} must be a valid phone number.",
+    "Url": "Invalid URL.",
+    "UrlField": "{{field}} must be a valid URL.",
+    "MinLength": "Must be at least {{min}} characters.",
+    "MinLengthField": "{{field}} must be at least {{min}} characters.",
+    "PasswordsDontMatch": "Passwords do not match."
+  }
+}

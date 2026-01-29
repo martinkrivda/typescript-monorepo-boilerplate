@@ -1,0 +1,37 @@
+{
+  "Common": {
+    "AppName": "Klientská aplikace",
+    "Language": "Jazyk",
+    "English": "Anglicky",
+    "Czech": "Česky",
+    "Spanish": "Španělsky",
+    "NavHome": "Domů",
+    "NavComponents": "Komponenty",
+    "NavDocs": "Dokumentace",
+    "Back": "Zpět"
+  },
+  "Theme": {
+    "Toggle": "Přepnout motiv"
+  },
+  "Validation": {
+    "Required": "Toto pole je povinné.",
+    "RequiredField": "{{field}} je povinné.",
+    "String": "Neplatný text.",
+    "StringField": "{{field}} není validní.",
+    "Number": "Neplatné číslo.",
+    "NumberField": "{{field}} musí být číslo.",
+    "Date": "Neplatné datum.",
+    "DateField": "{{field}} musí být platné datum.",
+    "DateTime": "Neplatné datum a čas.",
+    "DateTimeField": "{{field}} musí být platné datum a čas.",
+    "Email": "Neplatná e-mailová adresa.",
+    "EmailField": "{{field}} musí být platný e-mail.",
+    "Phone": "Neplatné telefonní číslo.",
+    "PhoneField": "{{field}} musí být platné telefonní číslo.",
+    "Url": "Neplatná URL adresa.",
+    "UrlField": "{{field}} musí být platná URL adresa.",
+    "MinLength": "Musí mít alespoň {{min}} znaků.",
+    "MinLengthField": "{{field}} musí mít alespoň {{min}} znaků.",
+    "PasswordsDontMatch": "Hesla se neshodují."
+  }
+}
