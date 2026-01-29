@@ -17,6 +17,15 @@ Minimal pnpm + Turbo monorepo with a Vite client and Hono server.
 
 ## Setup
 
+Activate pnpm via Corepack:
+
+```bash
+corepack enable
+corepack prepare pnpm@latest-10 --activate
+```
+
+Install dependencies:
+
 ```bash
 pnpm install
 ```
