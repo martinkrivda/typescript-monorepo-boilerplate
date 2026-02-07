@@ -47,6 +47,10 @@ describe("graphql endpoint integration", () => {
   });
 
   afterAll(async () => {
+    if (!server.listening) {
+      return;
+    }
+
     await new Promise<void>((resolve, reject) => {
       server.close((err?: Error) => {
         if (err) {

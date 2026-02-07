@@ -24,7 +24,7 @@ export const yoga = createYoga<{ requestId?: string }>({
     );
 
     return {
-      requestId: extra.requestId ?? randomUUID(),
+      requestId: extra?.requestId ?? randomUUID(),
       user,
     };
   },
