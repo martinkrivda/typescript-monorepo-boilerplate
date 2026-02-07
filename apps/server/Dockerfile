@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------
 # Build Stage - Compile TypeScript and build dependencies
 # -----------------------------------------------------------------------------
-FROM node:22.16-alpine AS builder
+FROM node:25.6-alpine AS builder
 
 # Install dumb-init for proper signal handling and security packages
 RUN apk add --no-cache dumb-init && \
@@ -47,7 +47,7 @@ RUN pnpm --filter ./apps/server... prune --prod
 # -----------------------------------------------------------------------------
 # Production Stage - Minimal runtime image
 # -----------------------------------------------------------------------------
-FROM node:22.16-alpine AS production
+FROM node:25.6-alpine AS production
 
 # Install dumb-init and security updates
 RUN apk add --no-cache dumb-init && \
