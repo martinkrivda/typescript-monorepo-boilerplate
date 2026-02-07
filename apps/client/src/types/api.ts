@@ -1,49 +1,35 @@
-export interface BaseApiResponse {
-  message: string;
-  error: boolean;
-  code: number;
-}
+import {
+  isErrorEnvelope,
+  isSuccessEnvelope,
+} from '@repo/shared';
+import type {
+  ApiResponseEnvelope,
+  ErrorEnvelope,
+  ProblemFieldError,
+  SuccessEnvelope,
+} from '@repo/shared';
 
-export interface SuccessApiResponse<T = unknown> extends BaseApiResponse {
-  error: false;
-  results: T;
-}
+export type SuccessApiResponse<T = unknown> = SuccessEnvelope<T>;
+export type ErrorApiResponse = ErrorEnvelope;
+export type ValidationError = ProblemFieldError;
+export type ValidationApiResponse = ErrorEnvelope & {
+  error: ErrorEnvelope['error'] & { status: 422 };
+};
 
-export interface ErrorApiResponse extends BaseApiResponse {
-  error: true;
-  results?: never;
-}
-
-export interface ValidationError {
-  msg: string;
-  param: string;
-}
-
-export interface ValidationApiResponse extends BaseApiResponse {
-  error: true;
-  code: 422;
-  message: 'Validation errors';
-  errors: ValidationError[];
-}
-
-export type ApiResponse<T = unknown> =
-  | SuccessApiResponse<T>
-  | ErrorApiResponse
-  | ValidationApiResponse;
+export type ApiResponse<T = unknown> = ApiResponseEnvelope<T>;
 
 export const isSuccessResponse = <T>(
   response: ApiResponse<T>
-): response is SuccessApiResponse<T> =>
-  !response.error && 'results' in response;
+): response is SuccessApiResponse<T> => isSuccessEnvelope(response);
 
 export const isErrorResponse = (
   response: ApiResponse
-): response is ErrorApiResponse => response.error && response.code !== 422;
+): response is ErrorApiResponse => isErrorEnvelope(response);
 
 export const isValidationResponse = (
   response: ApiResponse
 ): response is ValidationApiResponse =>
-  response.error && response.code === 422 && 'errors' in response;
+  isErrorResponse(response) && response.error.status === 422;
 
 export interface RequestState<T = unknown> {
   data: T | null;

@@ -34,4 +34,4 @@ export {
 export { configureOpenAPI, OPENAPI_CONFIG } from "./openapi";
 
 // Security configuration
-export { buildCSPDirectives, CSP_CONFIG, ENV_CONFIG, isCSPEnabled } from "./security";
+export { buildCSPDirectives, buildCSPHeaderValue, CSP_CONFIG, ENV_CONFIG, isCSPEnabled } from "./security";

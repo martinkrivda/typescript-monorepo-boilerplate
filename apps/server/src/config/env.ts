@@ -24,6 +24,9 @@ const isTestEnv = process.env.NODE_ENV === "test";
 if (isTestEnv && !process.env.DATABASE_URL) {
   process.env.DATABASE_URL = "postgres://test:test@localhost:5432/test";
 }
+if (isTestEnv && !process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = "test-jwt-secret-minimum-32-characters-long";
+}
 
 // Environment schema with validation
 const EnvSchema = z.object({
@@ -35,6 +38,7 @@ const EnvSchema = z.object({
   LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"]).default("info"),
   BASE_PATH: z.string().default("/rest/v1"),
   API_BASE_URL: z.string().optional(),
+  JWT_SECRET: z.string().min(32, "JWT_SECRET must have at least 32 characters"),
 
   // =================================================================
   // LOGGING CONFIGURATION
@@ -94,7 +98,7 @@ const EnvSchema = z.object({
   // =================================================================
   // CORS CONFIGURATION
   // =================================================================
-  CORS_ORIGIN: z.string().default("*"),
+  CORS_ORIGIN: z.string().default("http://localhost:3000"),
   CORS_METHODS: z.string().default("GET,POST,PUT,DELETE,OPTIONS"),
   CORS_HEADERS: z.string().default("Content-Type,Authorization"),
 

@@ -16,6 +16,7 @@ export default antfu({
   },
 }, {
   rules: {
+    "import/no-cycle": ["error"],
     "no-console": ["warn"],
     "antfu/no-top-level-await": ["off"],
     "node/prefer-global/process": ["off"],

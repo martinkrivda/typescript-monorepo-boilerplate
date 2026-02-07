@@ -1,10 +1,12 @@
 import { config } from '@/config';
-import type {
-  ApiResponse,
-  SuccessApiResponse,
-  ValidationApiResponse,
-  ValidationError,
-} from '@/types/api';
+import {
+  buildApiUrl,
+  createAuthHeaders,
+  handleUnauthorized,
+  parseApiResponse,
+  toApiError,
+  unwrapApiResponse,
+} from '@/lib/api/fetch-utils';
 import { useAuthForRequest } from './useAuth';
 
 const log = config.REQUEST_LOGGING
@@ -16,62 +18,35 @@ const log = config.REQUEST_LOGGING
 export const useApi = () => {
   const { token, logout } = useAuthForRequest();
 
-  const createHeaders = (skipAuth: boolean = false): Record<string, string> => {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-
-    if (!skipAuth && token) {
-      headers.Authorization = `Bearer ${token}`;
-    }
-
-    return headers;
-  };
-
   const handleResponse = async <T>(response: Response): Promise<T> => {
-    if (response.status === 401) {
-      logout();
-      throw new Error('Session expired. Please sign in again.');
+    handleUnauthorized(response, logout);
+
+    if (response.status === 204) {
+      return undefined as T;
     }
 
-    const contentType = response.headers.get('content-type');
-    let data: ApiResponse<T>;
-
-    if (contentType && contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      data = {} as ApiResponse<T>;
-    }
+    const data = await parseApiResponse<T>(response);
 
     if (!response.ok) {
-      const validationResponse = data as ValidationApiResponse;
-      if (validationResponse.errors) {
-        throw new Error(
-          validationResponse.errors
-            .map((err: ValidationError) => `${err.msg}: ${err.param}`)
-            .join(', ')
-        );
-      }
-
-      throw new Error(
-        data.message || `Request failed with status ${response.status}`
-      );
+      throw toApiError(response, data);
     }
 
-    const successResponse = data as SuccessApiResponse<T>;
-    return successResponse.results as T;
+    return unwrapApiResponse<T>(data);
   };
 
   const get = async <T>(
     endpoint: string,
     options?: { skipAuth?: boolean }
   ): Promise<T> => {
-    const url = `${config.BASE_API_URL}${endpoint}`;
+    const url = buildApiUrl(endpoint);
     log(`GET ${url}`);
 
     const response = await fetch(url, {
       method: 'GET',
-      headers: createHeaders(options?.skipAuth),
+      headers: {
+        'Content-Type': 'application/json',
+        ...createAuthHeaders(token, options?.skipAuth),
+      },
     });
 
     const result = await handleResponse<T>(response);
@@ -84,12 +59,15 @@ export const useApi = () => {
     data?: unknown,
     options?: { skipAuth?: boolean }
   ): Promise<T> => {
-    const url = `${config.BASE_API_URL}${endpoint}`;
+    const url = buildApiUrl(endpoint);
     log(`POST ${url}`, data);
 
     const response = await fetch(url, {
       method: 'POST',
-      headers: createHeaders(options?.skipAuth),
+      headers: {
+        'Content-Type': 'application/json',
+        ...createAuthHeaders(token, options?.skipAuth),
+      },
       body: JSON.stringify(data),
     });
 
@@ -103,12 +81,15 @@ export const useApi = () => {
     data?: unknown,
     options?: { skipAuth?: boolean }
   ): Promise<T> => {
-    const url = `${config.BASE_API_URL}${endpoint}`;
+    const url = buildApiUrl(endpoint);
     log(`PUT ${url}`, data);
 
     const response = await fetch(url, {
       method: 'PUT',
-      headers: createHeaders(options?.skipAuth),
+      headers: {
+        'Content-Type': 'application/json',
+        ...createAuthHeaders(token, options?.skipAuth),
+      },
       body: JSON.stringify(data),
     });
 
@@ -121,12 +102,15 @@ export const useApi = () => {
     endpoint: string,
     options?: { skipAuth?: boolean }
   ): Promise<T> => {
-    const url = `${config.BASE_API_URL}${endpoint}`;
+    const url = buildApiUrl(endpoint);
     log(`DELETE ${url}`);
 
     const response = await fetch(url, {
       method: 'DELETE',
-      headers: createHeaders(options?.skipAuth),
+      headers: {
+        'Content-Type': 'application/json',
+        ...createAuthHeaders(token, options?.skipAuth),
+      },
     });
 
     const result = await handleResponse<T>(response);
@@ -139,12 +123,15 @@ export const useApi = () => {
     data?: unknown,
     options?: { skipAuth?: boolean }
   ): Promise<T> => {
-    const url = `${config.BASE_API_URL}${endpoint}`;
+    const url = buildApiUrl(endpoint);
     log(`PATCH ${url}`, data);
 
     const response = await fetch(url, {
       method: 'PATCH',
-      headers: createHeaders(options?.skipAuth),
+      headers: {
+        'Content-Type': 'application/json',
+        ...createAuthHeaders(token, options?.skipAuth),
+      },
       body: JSON.stringify(data),
     });
 

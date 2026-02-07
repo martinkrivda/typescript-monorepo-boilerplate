@@ -20,16 +20,18 @@ import { bodyLimit } from "hono/body-limit";
 import { compress } from "hono/compress";
 import { contextStorage } from "hono/context-storage";
 import { cors } from "hono/cors";
+import { randomBytes } from "node:crypto";
 import { requestId } from "hono/request-id";
 import { secureHeaders } from "hono/secure-headers";
 import { timing } from "hono/timing";
 
 import type { AppBindings, AppOpenAPI, RateLimitOptions } from "@/types";
 
-import { buildCSPDirectives, env, isCSPEnabled } from "@/config";
+import { buildCSPHeaderValue, env, isCSPEnabled } from "@/config";
 import { prisma } from "@/db/prisma";
 import { HTTP_STATUS } from "@/lib/http-status";
 import { accessLoggerMiddleware } from "@/middlewares/access-logger";
+import { authMiddleware, isPublicPath } from "@/middlewares/auth.middleware";
 import { structuredLogger } from "@/middlewares/pino-logger";
 
 // Custom error handling (replaces stoker)
@@ -135,15 +137,18 @@ function createApp() {
   // 1. Security headers (first for safety)
   const enableCSP = isCSPEnabled(env.NODE_ENV);
 
-  app.use("*", secureHeaders(
-    enableCSP
-      ? {
-          contentSecurityPolicy: buildCSPDirectives(env.NODE_ENV),
-        }
-      : {
-          // CSP disabled for development
-        },
-  ));
+  app.use("*", secureHeaders());
+
+  app.use("*", async (c, next) => {
+    const nonce = randomBytes(16).toString("base64");
+    c.set("cspNonce", nonce);
+
+    if (enableCSP) {
+      c.header("Content-Security-Policy", buildCSPHeaderValue(env.NODE_ENV, nonce));
+    }
+
+    await next();
+  });
 
   // 2. Compression (second for bandwidth optimization)
   app.use("*", compress({
@@ -162,16 +167,58 @@ function createApp() {
     credentials: true,
   }));
 
-  // 5. Rate limiting (DDoS protection)
-  app.use("*", rateLimiter({
+  // 5. Authentication (protect non-public endpoints)
+  app.use("*", authMiddleware);
+
+  // 6. Per-route rate limiting
+  const rateLimiterKeyGenerator = (c: {
+    req: { header: (key: string) => string | undefined };
+    env?: { ip?: string };
+  }) => c.req.header("x-forwarded-for") || c.env?.ip || "anonymous";
+
+  const defaultRateLimiter = rateLimiter({
     windowMs: env.RATE_LIMIT_WINDOW_MS,
     limit: env.RATE_LIMIT_MAX,
     standardHeaders: "draft-6",
-    keyGenerator: (c: { req: { header: (key: string) => string | undefined }; env?: { ip?: string } }) =>
-      c.req.header("x-forwarded-for") || c.env?.ip || "anonymous",
-  } as RateLimitOptions));
+    keyGenerator: rateLimiterKeyGenerator,
+  } as RateLimitOptions);
 
-  // 6. Prisma injection (available on all routes)
+  // Brute-force protection for auth endpoints.
+  const authRateLimiter = rateLimiter({
+    windowMs: 60_000,
+    limit: 10,
+    standardHeaders: "draft-6",
+    keyGenerator: rateLimiterKeyGenerator,
+  } as RateLimitOptions);
+
+  // Dedicated limit for GraphQL endpoint.
+  const graphQLRateLimiter = rateLimiter({
+    windowMs: 60_000,
+    limit: 30,
+    standardHeaders: "draft-6",
+    keyGenerator: rateLimiterKeyGenerator,
+  } as RateLimitOptions);
+
+  app.use("*", async (c, next) => {
+    const path = c.req.path;
+
+    if (isPublicPath(path)) {
+      await next();
+      return;
+    }
+
+    if (path.startsWith("/auth")) {
+      return authRateLimiter(c, next);
+    }
+
+    if (path === "/graphql") {
+      return graphQLRateLimiter(c, next);
+    }
+
+    return defaultRateLimiter(c, next);
+  });
+
+  // 7. Prisma injection (available on all routes)
   app.use("*", async (c, next) => {
     c.set("prisma", prisma);
     await next();

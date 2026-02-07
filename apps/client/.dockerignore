@@ -61,7 +61,7 @@ changelog.md
 # =============================================================================
 .env
 .env.*
-!.env.example
+!.env.local.example
 secrets/
 keys/
 

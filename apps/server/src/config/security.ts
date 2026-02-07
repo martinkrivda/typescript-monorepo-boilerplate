@@ -55,15 +55,21 @@ export const CSP_CONFIG = {
  * @param nodeEnv - Current NODE_ENV value
  * @returns CSP directives object for hono/secure-headers
  */
-export function buildCSPDirectives(nodeEnv: string = "development") {
+export type CSPDirectiveMap = Record<string, string[]>;
+
+export function buildCSPDirectives(
+  nodeEnv: string = "development",
+  nonce?: string,
+): CSPDirectiveMap {
   const isDevelopment = nodeEnv === "development";
+  const nonceSource = nonce ? [`'nonce-${nonce}'`] : [];
 
   return {
     defaultSrc: ["'self'"],
 
     scriptSrc: [
       "'self'",
-      "'unsafe-inline'", // Required for some frameworks
+      ...nonceSource,
       ...CSP_CONFIG.CDN_PROVIDERS,
       ...CSP_CONFIG.API_DOCS,
       ...(isDevelopment ? CSP_CONFIG.DEVELOPMENT.LOCALHOST : []),
@@ -71,7 +77,7 @@ export function buildCSPDirectives(nodeEnv: string = "development") {
 
     styleSrc: [
       "'self'",
-      "'unsafe-inline'", // Required for dynamic styles
+      ...nonceSource,
       ...CSP_CONFIG.CDN_PROVIDERS,
       ...CSP_CONFIG.FONT_PROVIDERS,
       ...(isDevelopment ? CSP_CONFIG.DEVELOPMENT.LOCALHOST : []),
@@ -117,6 +123,35 @@ export function buildCSPDirectives(nodeEnv: string = "development") {
     frameAncestors: ["'none'"], // Prevents embedding in frames
   };
 };
+
+const directiveKeyMap: Record<string, string> = {
+  defaultSrc: "default-src",
+  scriptSrc: "script-src",
+  styleSrc: "style-src",
+  connectSrc: "connect-src",
+  fontSrc: "font-src",
+  imgSrc: "img-src",
+  mediaSrc: "media-src",
+  objectSrc: "object-src",
+  frameSrc: "frame-src",
+  baseUri: "base-uri",
+  formAction: "form-action",
+  frameAncestors: "frame-ancestors",
+};
+
+export function buildCSPHeaderValue(
+  nodeEnv: string = "development",
+  nonce?: string,
+) {
+  const directives = buildCSPDirectives(nodeEnv, nonce);
+
+  return Object.entries(directives)
+    .map(([key, values]) => {
+      const directive = directiveKeyMap[key] ?? key;
+      return `${directive} ${values.join(" ")}`;
+    })
+    .join("; ");
+}
 
 /**
  * Environment-specific configuration

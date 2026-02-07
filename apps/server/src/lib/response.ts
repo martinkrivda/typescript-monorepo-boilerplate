@@ -14,6 +14,12 @@
 
 import type { Context } from "hono";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
+import type {
+  ApiResponseEnvelope as SharedApiResponseEnvelope,
+  ErrorEnvelope as SharedErrorEnvelope,
+  ResponseMeta as SharedResponseMeta,
+  SuccessEnvelope as SharedSuccessEnvelope,
+} from "@repo/shared";
 
 import type { ProblemDetails } from "./problem";
 
@@ -24,41 +30,24 @@ import type { ProblemDetails } from "./problem";
 /**
  * Response metadata included in every response
  */
-export interface ResponseMeta {
-  /** Unique request identifier for correlation */
-  requestId: string;
-  /** ISO 8601 timestamp of response generation */
-  timestamp: string;
-  /** W3C Trace Context trace-id (optional, if traceparent header present) */
-  traceId?: string;
-  /** W3C Trace Context span-id (optional, if traceparent header present) */
-  spanId?: string;
-}
+export type ResponseMeta = SharedResponseMeta;
 
 /**
  * Success response envelope
  */
-export interface SuccessEnvelope<T> {
-  success: true;
-  data: T;
-  error: null;
-  meta: ResponseMeta;
-}
+export type SuccessEnvelope<T> = SharedSuccessEnvelope<T>;
 
 /**
  * Error response envelope
  */
-export interface ErrorEnvelope {
-  success: false;
-  data: null;
+export type ErrorEnvelope = Omit<SharedErrorEnvelope, "error"> & {
   error: ProblemDetails;
-  meta: ResponseMeta;
-}
+};
 
 /**
  * Union type for any API response
  */
-export type ApiResponse<T> = SuccessEnvelope<T> | ErrorEnvelope;
+export type ApiResponse<T> = SharedApiResponseEnvelope<T>;
 
 // =================================================================
 // W3C TRACE CONTEXT PARSER

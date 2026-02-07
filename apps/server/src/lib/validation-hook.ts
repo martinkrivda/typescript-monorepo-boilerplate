@@ -23,6 +23,7 @@
  */
 
 import * as z from "zod";
+import type { Context } from "hono";
 
 import { AppError } from "@/errors";
 
@@ -117,7 +118,14 @@ function zodToFieldErrorsWithDomainCodes(zerr: z.ZodError) {
  * });
  */
 
-export function validationHook(result, c) {
+type ValidationHookResult = {
+  success: boolean;
+  error?: unknown;
+  target?: string;
+  data?: unknown;
+};
+
+export function validationHook(result: ValidationHookResult, c: Context) {
   // If validation passed, continue to handler
   if (result.success) {
     return;

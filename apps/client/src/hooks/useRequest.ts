@@ -1,11 +1,18 @@
 import { config } from '@/config';
 import type {
-  ApiResponse,
   RequestOptions,
   RequestState,
   UseRequestReturn,
-  ValidationApiResponse,
 } from '@/types/api';
+import {
+  buildApiUrl,
+  createAuthHeaders,
+  handleUnauthorized,
+  parseApiResponse,
+  SESSION_EXPIRED_MESSAGE,
+  toApiError,
+  unwrapApiResponse,
+} from '@/lib/api/fetch-utils';
 import { useCallback, useRef, useState } from 'react';
 import { toast } from '@/utils';
 import { useAuthForRequest } from './useAuth';
@@ -84,8 +91,7 @@ export const useRequest = <T = unknown>(
       try {
         const normalizedHeaders = normalizeHeaders(headers);
 
-        const authHeaders =
-          !skipAuth && token ? { Authorization: `Bearer ${token}` } : {};
+        const authHeaders = createAuthHeaders(token, skipAuth);
 
         const requestHeaders: Record<string, string> = {
           ...authHeaders,
@@ -99,7 +105,7 @@ export const useRequest = <T = unknown>(
           requestHeaders['Content-Type'] = 'application/json';
         }
 
-        const fullUrl = `${config.BASE_API_URL}${url}`;
+        const fullUrl = buildApiUrl(url);
 
         const response = await fetch(fullUrl, {
           method,
@@ -108,41 +114,28 @@ export const useRequest = <T = unknown>(
           ...fetchOptions,
         });
 
-        if (response.status === 401 && !skipAuth) {
-          logout();
-          throw new Error('Session expired. Please sign in again.');
+        handleUnauthorized(response, logout, skipAuth);
+
+        if (response.status === 204) {
+          setState((prev: RequestState<T>) => ({
+            ...prev,
+            data: undefined as T,
+            isLoading: false,
+            error: null,
+          }));
+          onSuccess?.(undefined as T);
+          return;
         }
 
-        let data: ApiResponse<T>;
-
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          data = await response.json();
-        } else {
-          data = {} as ApiResponse<T>;
-        }
+        const data = await parseApiResponse<T>(response);
 
         if (!response.ok) {
-          const validationData = data as ValidationApiResponse;
-          if (validationData.errors) {
-            throw new Error(
-              validationData.errors
-                .map(
-                  (err: { msg: string; param: string }) =>
-                    `${err.msg}: ${err.param}`
-                )
-                .join(', ')
-            );
-          }
-
-          throw new Error(
-            data.message || `Request failed with status ${response.status}`
-          );
+          throw toApiError(response, data);
         }
 
         log(`${method} ${url} success`, data);
 
-        const responseData = 'results' in data ? data.results : data;
+        const responseData = unwrapApiResponse<T>(data);
 
         setState((prev: RequestState<T>) => ({
           ...prev,
@@ -170,7 +163,7 @@ export const useRequest = <T = unknown>(
           error: errorMessage,
         }));
 
-        if (!errorMessage.includes('Session expired')) {
+        if (!errorMessage.includes(SESSION_EXPIRED_MESSAGE)) {
           toast({
             title: 'Request Failed',
             description: errorMessage,

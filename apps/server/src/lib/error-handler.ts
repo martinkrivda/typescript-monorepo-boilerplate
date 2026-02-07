@@ -34,14 +34,14 @@ import { fail } from "./response";
  * // In create-app.ts (root app only)
  * app.onError(errorHandler);
  */
-export function errorHandler(err, c) {
+export function errorHandler(err: unknown, c: Context) {
   return handleStandardError(err, c);
 }
 
 /**
  * Handles standard API errors with envelope format
  */
-function handleStandardError(err: Error, c: Context) {
+function handleStandardError(err: unknown, c: Context) {
   const { problem, httpStatus, logLevel, errorType } = toProblemDetails(c, err);
 
   // Structured logging

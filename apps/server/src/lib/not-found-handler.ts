@@ -12,6 +12,8 @@
  * @module lib/not-found-handler
  */
 
+import type { Context } from "hono";
+
 import { ProblemRegistry, problemTypeUri } from "@/errors";
 
 import { fail } from "./response";
@@ -26,7 +28,7 @@ import { fail } from "./response";
  * // In create-app.ts (root app only)
  * app.notFound(notFoundHandler);
  */
-export function notFoundHandler(c) {
+export function notFoundHandler(c: Context) {
   const def = ProblemRegistry.not_found;
 
   const problem = {

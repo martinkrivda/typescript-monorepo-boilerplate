@@ -7,6 +7,7 @@ import type { LogContext, logger } from "@/lib/logging";
 export interface AppBindings {
   Variables: {
     requestId: string;
+    cspNonce: string;
     logger: typeof logger;
     logContext: LogContext;
     prisma: typeof prisma;
