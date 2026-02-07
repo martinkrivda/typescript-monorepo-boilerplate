@@ -1,7 +1,7 @@
 # =============================================================================
 # BUILD STAGE
 # =============================================================================
-FROM node:22.20.0-alpine AS builder
+FROM node:25.6.0-alpine AS builder
 
 # Set working directory
 WORKDIR /app
