@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { getMainDefinition } from '@apollo/client/utilities';
+import { CombinedGraphQLErrors } from '@apollo/client/errors';
 import { createClient } from 'graphql-ws';
 import { getGraphQLUrls, getToken } from '@/lib/api/apollo-client-helper';
 
@@ -49,17 +50,16 @@ const createApolloLink = (
     };
   });
 
-  const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
-    if (graphQLErrors?.length) {
+  const errorLink = onError(({ error, operation }) => {
+    if (CombinedGraphQLErrors.is(error)) {
       console.warn(
         `[GQL errors] ${operation.operationName ?? 'unknown'}`,
-        graphQLErrors
+        error.errors
       );
+      return;
     }
 
-    if (networkError) {
-      console.error('[Network error]', networkError);
-    }
+    console.error('[Network error]', error);
   });
 
   let wsLink: ApolloLink | null = null;
